@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import com.example.demo.controller.RecController;
 import com.example.demo.controller.UserController;
 
 @SpringBootApplication
@@ -17,7 +18,8 @@ public class ArrecommendationSystem extends ResourceConfig {
 	
 	public ArrecommendationSystem()
 	 {
-        register(UserController.class);     
+        register(UserController.class);    
+        register(RecController.class);
         property(ServletProperties.FILTER_FORWARD_ON_404, true);
 	 }
 	

@@ -38,7 +38,7 @@
 }
 
 .navbar a:hover {
-	background: #FAD7A0;
+	background: ##b3b3ff;
 	color: black;
 }
 
@@ -50,7 +50,7 @@
 .dropdown-content {
 	display: none;
 	position: absolute;
-	background-color: orange;
+	background-color: #b3b3ff;
 	width: 100%;
 	z-index: 1;
 }
@@ -63,7 +63,7 @@
 }
 
 .dropdown-content a:hover {
-	background-color: #FAD7A0;
+	background-color: #b3b3ff;
 	color: black;
 }
 
@@ -116,6 +116,17 @@ p.date {
 	object-fit: cover;
 }
 
+.p-1 {
+	background-color: #6EC4BD;
+	color: black;
+}
+
+.title {
+	family: times new roman;
+}
+.myHover:hover{
+background-color: #6EC4BD;
+}
 </style>
 </head>
 
@@ -124,21 +135,20 @@ p.date {
 	<div ng-app="NSE-BSE-app" ng-controller="NSE-BSE-ctrl">
 
 		<!-- ---------------------------------TITLE AND LOGO ----------------------------------------- -->
-		<div class="text center"
-			style="font-variant: small-caps;",>
-
-			<!-- Title farmer buddy -->
-			<font color="#48847F" family="Times New Roman" size="40"><b>
-					<p>BSE/ NSE Arbitrage Recommendation System</p> </b></font> </span>
+		<div class="title">
+			<h1 class="text center">BSE/ NSE Arbitrage Recommendation System
+			</h1>
 		</div>
+		<br> <br>
 		<!-- ----------------------------------------------Header--------------------------------------------------------->
 		<header>
 			<div class="p-1" id="topHeader">
 				<div class="container">
 					<div class="row">
-						<div class="text-right">
-							<a class="p-1" href="tel:+917798839371"><i
-								class="fa fa-phone">(+91)7798839371</i></a> <a class="p-1"
+						<div class="text-center">
+							<label>Contact:</label> <a class="p-1" href="tel:+917798839371"
+								style="size: 10;"><i class="fa fa-phone">(+91)7798839371</i></a><br>
+							<a class="p-1" style="size: 10;"
 								href="mailto:deshmukhgauri2015@gmail.com"><i
 								class="fa fa-envelope">deshmukhgauri2015@gmail.com</i></a>
 						</div>
@@ -156,42 +166,33 @@ p.date {
 					<div ng-if="welcome_status=='true'">
 						<div id="welcome_div">
 							<section>
-								<p>Login Successful !!</p>
+							<br>
+								<div class="container-fluid text-center" id="bottomHeader">
+									<nav class="navbar navbar-dark navbar-expand-md">
+										<button class="myHover" type="submit"
+											style="color: black; padding: 17px 16px;" class="btn"
+											ng-click="welcome_page()">Home</button>
 
-								<div class="container-fluid " id="bottomHeader">
-									<nav class="navbar navbar-dark navbar-expand-md"
-										style="background-color: #b3b3ff;">
-										<button type="submit"
-											style="color: black; padding: 17px 16px;"
-											class="btn btn-warning" ng-click="welcome_page()">Home</button>
-
-										<button type="submit"
-											style="color: black; padding: 17px 16px;"
-											class="btn btn-success" style="background-color: #FAD7A0;"
-											ng-click="about_page()">About us</button>
-										<button type="submit"
-											style="color: black; padding: 17px 16px;"
-											class="btn btn-success">Get Recommendations</button>
-										<button type="submit"
-											style="color: black; padding: 17px 16px;"
-											class="btn btn-success" style="background-color: #FAD7A0;">View
-											Saved Stocks</button>
-										<button type="submit"
-											style="color: black; padding: 17px 16px;"
-											class="btn btn-success" style="background-color: #FAD7A0;"
-											ng-click="contact_page()">Contact us</button>
-										<button type="submit"
-											style="color: black; padding: 17px 16px;"
-											class="btn btn-success" style="background-color: #FAD7A0;"
-											ng-click="backToHome()">Logout</button>
+										<button class="myHover" type="submit"
+											style="color: black; padding: 17px 16px;" class="btn"
+											style="background-color:#b3b3ff;" ng-click="about_page()">About
+											us</button>
+										
+										<button class="myHover" type="submit"
+											style="color: black; padding: 17px 16px;" class="btn"
+											style="background-color:#b3b3ff;" ng-click="contact_page()">Contact
+											us</button>
+										<button class="myHover" type="submit"
+											style="color: black; padding: 17px 16px;" class="btn"
+											style="background-color:#b3b3ff;" ng-click="logout()">Logout</button>
 
 									</nav>
 								</div>
-
-								<img class="text-center" src="./IMG/download.jpg" width="350"
-									height="500" /> <br>
-								
-								<div class="jumbotron col-md-offset-3 col-md-6"">
+								<br><br>
+								<div class="col-sm-offset-3 col-md-6 text-center">
+									<img class="image" src="./IMG/download.jpg" height=250 width=350 /> <br>
+									<br><br>
+								<div class="justify">
 									<font size="4.5" color="black"> Arbitrage describes the
 										act of buying a security in one market and simultaneously
 										selling it in another market at a higher price, thereby
@@ -205,13 +206,12 @@ p.date {
 										trader to harvest gains from this differential.Although this
 										may seem like a complicated transaction to the untrained eye,
 										arbitrage trades are actually quite straightforward and are
-										thus considered low-risk. </font>
-								</div>
-
-								<div class="recbutton">
+										thus considered low-risk. </font></div><br><br><br>
+										
 									<br>
-									<Button class="Submit btn btn-success text-center" ng-click="getDetails()">Get
-										Recommendations</Button>
+									<Button class="Submit btn btn-success btn-block"
+										ng-click="getDetails()">GET BSE/NSE DATA</Button><br><br>
+									
 								</div>
 							</section>
 
@@ -220,18 +220,17 @@ p.date {
 				</div>
 			</div>
 
-			<div ng-if="detail.status=='notok'">Invalid Username or
-				password! Try again !</div>
-
 		</div>
 		<!-- -----------------------------login success/ fail -------------------------------------------------------- -->
 
-		<div class="jumbotron col-md-offset-3 col-md-6" ng-if="crop_detail_status=='true'">
-		
-			<table class="table" >
+		<div class="jumbotron col-md-offset-3 col-md-6"
+			ng-if="rec_detail_status=='true'">
+			<div class="nsebes">
+				<h3 class="text-center">BSE DATA</h3>
+				<table class=" table table-condensed ">
 					<thread class="thread_dark">
 					<tr>
-					<th>Company Name</th>
+						<th>Company Name</th>
 						<th>Open</th>
 						<th>High</th>
 						<th>Low</th>
@@ -251,8 +250,72 @@ p.date {
 						</tr>
 					</tbody>
 				</table>
+
+				<br>
+				<br>
+				<h3 class="text-center">NSE DATA</h3>
+				<table class=" table table-condensed ">
+					<thread class="thread_dark">
+					<tr>
+						<th>Company Name</th>
+						<th>Open</th>
+						<th>High</th>
+						<th>Low</th>
+						<th>Close</th>
+						<th>Volume</th>
+
+					</tr>
+					</thread>
+					<tbody ng-repeat="data in dbdata">
+						<tr>
+							<td>{{data["Meta Data"]["2. Symbol"]}}</td>
+							<td>{{data["Time Series (Daily)"]["2020-07-30"]["1. open"]}}</td>
+							<td>{{data["Time Series (Daily)"]["2020-07-30"]["2. high"]}}</td>
+							<td>{{data["Time Series (Daily)"]["2020-07-30"]["3. low"]}}</td>
+							<td>{{data["Time Series (Daily)"]["2020-07-30"]["4. close"]}}</td>
+							<td>{{data["Time Series (Daily)"]["2020-07-30"]["5. volume"]}}</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
+			<button class="btn btn-success btn-block" ng-click="newDetails()">Get
+				Recommendations</button>
 				
+
+			<div class="jumbotron col-md-offset-3 col-md-6"
+				ng-if="recommend_detail_status=='true'">
+
+				<h3 class="text-center">Recommended Data</h3>
+
+				<table class=" table table-condensed ">
+					<thread class="thread_dark">
+					<tr>
+						<th>Company Name</th>
+						<th>BSE Open</th>
+						<th>NSE Open</th>
+					</tr>
+					</thread>
+					<tbody ng-repeat="data in newrecdata">
+					
+						<tr ng-repeat="values in dbdata" ng-if='values["Meta Data"]["2. Symbol"] == data'>
+							<td>{{values["Meta Data"]["2. Symbol"]}}</td>
+							<td>{{values["Time Series (Daily)"]["2020-07-31"]["1. open"]}}</td>
+							<td>{{values["Time Series (Daily)"]["2020-07-30"]["1. open"]}}</td>
+						</tr>
+		
+					</tbody>
+				
+				</table>
+
+			</div>
+			<br>
+			<button type="submit" class="btn btn-primary btn-block"
+							ng-click="welcome_page()">Exit				
+			</button>
+		</div>
+
+		<!-- ---------------------------------------------------------- -->
+
 
 		<!-- ----------------------------------REGISTRATION FORM--------------------------------------------------- -->
 		<div id="Registration_div" ng-if="registration_status=='true'"
@@ -425,7 +488,7 @@ p.date {
 						<div class="col-12">
 							<h2>Contact Us</h2>
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="farmer-buddy.html">Home</a>
+								<li class="breadcrumb-item"><a href="welcome_page()">Home</a>
 								<li>
 								<li class="breadcrumb-item active">Contact Us</li>
 							</ol>
@@ -535,7 +598,7 @@ p.date {
 								<div class="form-row">
 									<div class="form-group col-md-12 text-center">
 										<button type="submit" class="btn btn-success"
-											ng-click="backToHome()">
+											ng-click="welcome_page()">
 											<i class="fa fa-chevron-left"></i>Back To Home
 										</button>
 									</div>
@@ -573,77 +636,45 @@ p.date {
 
 
 
-		<div id="About_div" ng-if="about_status=='true'">
-			<section class="breadcrumbs-section">
+		<div class="col-sm-offset-3 col-md-6" id="About_div" ng-if="about_status=='true'">
+		<section class="breadcrumbs-section">
 				<div class="container">
 					<div class="row">
 						<div class="col-12">
-							<h2>About Us</h2>
+							<h2>About us</h2>
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="farmer-buddy.html">Home</a>
+								<li class="breadcrumb-item"><a href="welcome_page()">Home</a>
 								<li>
-								<li class="breadcrumb-item active">About Us</li>
+								<li class="breadcrumb-item active">About</li>
 							</ol>
 						</div>
 					</div>
 				</div>
 			</section>
+			<section>
+			<div class="text-center">
+			<img class="img" src="./IMG/download.jpg" height=350 width=500 /> <br>
 
-			<section class="section background-white">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-6 margin-m-bottom">
-
-							<h2 class="text-thin">Our Vision</h2>
-							<font family="Times New Roman" size="4.5" color="black">To
-								transform farmers by creating an innovative as well as
-								interactive platform for the best farming results.</font>
-						</div>
-						<div class="col-md-6 margin-m-bottom">
-
-							<h2 class="text-thin">Our Mission</h2>
-							<font family="Times New Roman" size="4.5" color="black">To
-								provide an online platform for getting necessary help for
-								farming</font>
-						</div>
-					</div>
-				</div>
-			</section>
-			<br>.
-			<section class="section background-white">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12 margin-m-bottom">
-							<h2 class="text-thin">Our Values</h2>
-
-							<font family="Times New Roman" size="4.5" color="black">Respect
-								and value for local knowledge and innovations<br> To
-								provide agriculture information to everyone which is easy to
-								understand<br> <font>To encourage the youths on
-									rural development</font>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			<section class="section background-white">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12 margin-m-bottom">
-							<br>
-							<h2>--------------------------------------------------What
-								we are----------------------------------------------</h2>
-							<br> <font family="Times New Roman" size="4.5" color="black">This
-								platform is specially developed to empower farmers the across
-								maharashtra. Here we help farmers all the way from seeding to
-								shipping their products in market. It includes seeds,
-								fertilizers, pesticides. We also provide guidance of checking
-								soil capacity and quality. This is the collaborative platform
-								which contains each necessary information needed for farming.</font><br>
-						</div>
-					</div>
-				</div>
-			</section>
+									<font size="4.5" color="black" > Arbitrage describes the
+										act of buying a security in one market and simultaneously
+										selling it in another market at a higher price, thereby
+										enabling investors to profit from the temporary difference in
+										cost per share. In the stock market, traders exploit arbitrage
+										opportunities by purchasing a stock on a foreign exchange
+										where the equity's share price has not yet adjusted for the
+										exchange rate, which is in a constant state of flux. The price
+										of the stock on the foreign exchange is therefore undervalued
+										compared to the price on the local exchange, positioning the
+										trader to harvest gains from this differential.Although this
+										may seem like a complicated transaction to the untrained eye,
+										arbitrage trades are actually quite straightforward and are
+										thus considered low-risk. </font><br><br>
+										
+									
+									<Button class="Submit btn btn-success btn-block"
+										ng-click="welcome_page()">Back to Home</Button><br><br>
+		</div>							
+		</section>
 		</div>
 
 		<!-- ------------------------------------------------About Page close ---------------------------------------- -->
@@ -694,6 +725,8 @@ p.date {
 									</form>
 
 								</div>
+								<Button class="Submit btn btn-success btn-block"
+										ng-click="logout()">Back to Home</Button><br><br>
 							</div>
 						</div>
 					</div>
@@ -720,9 +753,16 @@ p.date {
 				</div>
 
 				<div class="col-md-6">
-					<font color="black" size="5">Related Links</font><br> <a
-						href="#"><font color="black" >About us </font></a><br> <a href="#"><font color="black" >Contact us</font></a><br>
-					<a href="#"><font color="black" >Feedback</font></a><br>
+
+					<font color="black" size="5">Related Links</font><br>
+					<button type="submit" class="btn btn-link" ng-click="about_page()"
+						style="color: black;">About us</button>
+					<br>
+					<button type="submit" class="btn btn-link" style="color: black;"
+						ng-click="contact_page()" style="color: black;">Contact
+						us</button>
+					<br>
+
 				</div>
 				<div class="col-md-6">
 					<font color="black" size="5">Contact us</font><br> <a
@@ -770,7 +810,9 @@ p.date {
 						$scope.regdetail = "";
 						$scope.about_status = "false";
 						$scope.context_path = "http://localhost:2020";
-						$scope.crop_detail_status = "false";
+						$scope.rec_detail_status = "false";
+						$scope.recommend_detail_status = "false";
+						$scope.dbdata = [];
 						
 						
 						$scope.loginUser = function(uname, pwd) {
@@ -784,6 +826,7 @@ p.date {
 										return angular
 												.fromJson($scope.userdetail);
 									});
+							alert("Login Successfull !!");
 						}
 
 						$scope.registerUser = function(firstname, lastname,
@@ -850,7 +893,6 @@ p.date {
 						$scope.getDetails = function() {
 
 							$scope.companylist = ["TCS","IBM","GOOG","SI","NOK"];
-							$scope.dbdata = [];
 							console.log($scope.companylist);
 							for(var i=0; i<$scope.companylist.length; i++)
 							{
@@ -870,7 +912,21 @@ p.date {
 												return angular.fromJson($scope.dbdata);
 											});
 							}
-							$scope.crop_detail_status = "true";
+							$scope.rec_detail_status = "true";
+						}
+						
+						$scope.newDetails = function()
+						{
+							$http
+							.get(
+									$scope.context_path+ "/getRec/")
+							.then(
+									function(response) {
+										console.log(response.data);
+										$scope.newrecdata =response.data;
+										return $scope.newrecdata;
+									});
+							$scope.recommend_detail_status = "true";
 						}
 
 						$scope.backToHome = function() {
@@ -880,7 +936,8 @@ p.date {
 							$scope.contact_status = "false";
 							$scope.forget_pass_status = "false";
 							$scope.about_status = "false";
-							$scope.crop_detail_status = "false";
+							$scope.rec_detail_status = "false";
+							$scope.recommend_detail_status = "false";
 						}
 						$scope.registration_page = function() {
 							$scope.welcome_status = "false";
@@ -889,8 +946,8 @@ p.date {
 							$scope.contact_status = "false";
 							$scope.forget_pass_status = "false";
 							$scope.about_status = "false";
-							$scope.crop_detail_status = "false";
-
+							$scope.rec_detail_status = "false";
+							$scope.recommend_detail_status = "false";
 						}
 						$scope.contact_page = function() {
 							$scope.welcome_status = "false";
@@ -899,7 +956,8 @@ p.date {
 							$scope.contact_status = "true";
 							$scope.forget_pass_status = "false";
 							$scope.about_status = "false";
-							$scope.crop_detail_status = "false";
+							$scope.rec_detail_status = "false";
+							$scope.recommend_detail_status = "false";
 						}
 
 						$scope.welcome_page = function() {
@@ -909,7 +967,8 @@ p.date {
 							$scope.contact_status = "false";
 							$scope.forget_pass_status = "false";
 							$scope.about_status = "false";
-							$scope.crop_detail_status = "false";
+							$scope.rec_detail_status = "false";
+							$scope.recommend_detail_status = "false";
 						}
 
 						$scope.about_page = function() {
@@ -919,7 +978,8 @@ p.date {
 							$scope.contact_status = "false";
 							$scope.forget_pass_status = "false";
 							$scope.about_status = "true";
-							$scope.crop_detail_status = "false";
+							$scope.rec_detail_status = "false";
+							$scope.recommend_detail_status = "false";
 						}
 
 						$scope.forget_password = function() {
@@ -929,9 +989,26 @@ p.date {
 							$scope.contact_status = "false";
 							$scope.forget_pass_status = "true";
 							$scope.about_status = "false";
-							$scope.crop_detail_status = "false";
+							$scope.rec_detail_status = "false";
+							$scope.recommend_detail_status = "false";
 
-						}
+							}
+					$scope.logout = function()
+					{
+						alert("Logged out Successfully !!");
+						$scope.login_status = "false";
+						$scope.registration_status = "false";
+						$scope.welcome_status = "false";
+						$scope.contact_status = "false";
+						$scope.forget_pass_status = "false";
+						$scope.checkpass = "true";
+						$scope.regdetail = "";
+						$scope.about_status = "false";
+						$scope.rec_detail_status = "false";
+						$scope.recommend_detail_status = "false";
+						$scope.dbdata = [];
+						$scope.newrecdata="";
+					}
 
 					});
 </script>
