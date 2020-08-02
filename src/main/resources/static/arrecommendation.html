@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<!-- Include jQuery -->
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<script src="https://kit.fontawesome.com/yourcode.js"></script>
+
+<!-- Bootstrap 3.3.7 -->
+<script
+	src="https://adminlte.io/themes/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://adminlte.io/themes/AdminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+.navbar a {
+	float: left;
+	display: block;
+	color: black;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+.form-gap {
+	padding-top: 70px;
+}
+
+.navbar a:hover {
+	background: #FAD7A0;
+	color: black;
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: orange;
+	width: 100%;
+	z-index: 1;
+}
+
+.dropdown-content a {
+	color: black;
+	padding: 14px 18px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content a:hover {
+	background-color: #FAD7A0;
+	color: black;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.full-footer {
+	background-color: #6EC4BD;
+}
+
+.bottom-footer {
+	background-color: gray;
+}
+
+.breadcrumbs-section {
+	background-color: white;
+}
+
+.breadcrumb {
+	background-color: white;
+}
+
+.carousel-inner {
+	max-height: 300px;
+	width: 100%;
+}
+
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+
+p.date {
+	text-align: center;
+	font-size: 32px;
+}
+
+.rq {
+	color: #FF0000;
+	font-size: 10pt;
+}
+
+.image {
+	float: center;
+	height: 250;
+	width: 250;
+	object-fit: cover;
+}
+
+</style>
+</head>
+
+
+<body>
+	<div ng-app="NSE-BSE-app" ng-controller="NSE-BSE-ctrl">
+
+		<!-- ---------------------------------TITLE AND LOGO ----------------------------------------- -->
+		<div class="text center"
+			style="font-variant: small-caps;",>
+
+			<!-- Title farmer buddy -->
+			<font color="#48847F" family="Times New Roman" size="40"><b>
+					<p>BSE/ NSE Arbitrage Recommendation System</p> </b></font> </span>
+		</div>
+		<!-- ----------------------------------------------Header--------------------------------------------------------->
+		<header>
+			<div class="p-1" id="topHeader">
+				<div class="container">
+					<div class="row">
+						<div class="text-right">
+							<a class="p-1" href="tel:+917798839371"><i
+								class="fa fa-phone">(+91)7798839371</i></a> <a class="p-1"
+								href="mailto:deshmukhgauri2015@gmail.com"><i
+								class="fa fa-envelope">deshmukhgauri2015@gmail.com</i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<!-- ------------------------------------------------------------------------------------------------- -->
+		<!-- -----------------------------login success/ fail -------------------------------------------------------- -->
+
+		<div ng-repeat="detail in userdetail">
+			<!-- Its like Java for loop -->
+			<div ng-if="detail.status=='ok'">
+				<div ng-init="welcome_page()">
+					<div ng-if="welcome_status=='true'">
+						<div id="welcome_div">
+							<section>
+								<p>Login Successful !!</p>
+
+								<div class="container-fluid " id="bottomHeader">
+									<nav class="navbar navbar-dark navbar-expand-md"
+										style="background-color: #b3b3ff;">
+										<button type="submit"
+											style="color: black; padding: 17px 16px;"
+											class="btn btn-warning" ng-click="welcome_page()">Home</button>
+
+										<button type="submit"
+											style="color: black; padding: 17px 16px;"
+											class="btn btn-success" style="background-color: #FAD7A0;"
+											ng-click="about_page()">About us</button>
+										<button type="submit"
+											style="color: black; padding: 17px 16px;"
+											class="btn btn-success">Get Recommendations</button>
+										<button type="submit"
+											style="color: black; padding: 17px 16px;"
+											class="btn btn-success" style="background-color: #FAD7A0;">View
+											Saved Stocks</button>
+										<button type="submit"
+											style="color: black; padding: 17px 16px;"
+											class="btn btn-success" style="background-color: #FAD7A0;"
+											ng-click="contact_page()">Contact us</button>
+										<button type="submit"
+											style="color: black; padding: 17px 16px;"
+											class="btn btn-success" style="background-color: #FAD7A0;"
+											ng-click="backToHome()">Logout</button>
+
+									</nav>
+								</div>
+
+								<img class="text-center" src="./IMG/download.jpg" width="350"
+									height="500" /> <br>
+								
+								<div class="jumbotron col-md-offset-3 col-md-6"">
+									<font size="4.5" color="black"> Arbitrage describes the
+										act of buying a security in one market and simultaneously
+										selling it in another market at a higher price, thereby
+										enabling investors to profit from the temporary difference in
+										cost per share. In the stock market, traders exploit arbitrage
+										opportunities by purchasing a stock on a foreign exchange
+										where the equity's share price has not yet adjusted for the
+										exchange rate, which is in a constant state of flux. The price
+										of the stock on the foreign exchange is therefore undervalued
+										compared to the price on the local exchange, positioning the
+										trader to harvest gains from this differential.Although this
+										may seem like a complicated transaction to the untrained eye,
+										arbitrage trades are actually quite straightforward and are
+										thus considered low-risk. </font>
+								</div>
+
+								<div class="recbutton">
+									<br>
+									<Button class="Submit btn btn-success text-center" ng-click="getDetails()">Get
+										Recommendations</Button>
+								</div>
+							</section>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div ng-if="detail.status=='notok'">Invalid Username or
+				password! Try again !</div>
+
+		</div>
+		<!-- -----------------------------login success/ fail -------------------------------------------------------- -->
+
+		<div class="jumbotron col-md-offset-3 col-md-6" ng-if="crop_detail_status=='true'">
+		
+			<table class="table" >
+					<thread class="thread_dark">
+					<tr>
+					<th>Company Name</th>
+						<th>Open</th>
+						<th>High</th>
+						<th>Low</th>
+						<th>Close</th>
+						<th>Volume</th>
+
+					</tr>
+					</thread>
+					<tbody ng-repeat="data in dbdata">
+						<tr>
+							<td>{{data["Meta Data"]["2. Symbol"]}}</td>
+							<td>{{data["Time Series (Daily)"]["2020-07-31"]["1. open"]}}</td>
+							<td>{{data["Time Series (Daily)"]["2020-07-31"]["2. high"]}}</td>
+							<td>{{data["Time Series (Daily)"]["2020-07-31"]["3. low"]}}</td>
+							<td>{{data["Time Series (Daily)"]["2020-07-31"]["4. close"]}}</td>
+							<td>{{data["Time Series (Daily)"]["2020-07-31"]["5. volume"]}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+				
+
+		<!-- ----------------------------------REGISTRATION FORM--------------------------------------------------- -->
+		<div id="Registration_div" ng-if="registration_status=='true'"
+			class="jumbotron col-md-offset-3 col-md-6"
+			style="background-color: white; font-stretch: ultra-expanded">
+			<div class="text-center">
+				<!-- Registration check ----------------------------------------------------------------------->
+
+				<div ng-repeat="rdetail in regdetail">
+					<div ng-if="rdetail.status=='notok'">{{rdetail.msg}}</div>
+				</div>
+
+
+				<h2>
+					<font color="black"> Registration Form </font>
+				</h2>
+			</div>
+			<label><font color="red" size=3px>Fields with * are
+					required.</font></label>
+			<form name="form1" action="#" onsubmit="required()">
+				<div class="form-group">
+					<label>Enter first name:</label><font color="red" size=5px>*</font>
+					<input type="text" class="form-control" placeholder="First name"
+						ng-model="firstname" name="firstname" required>
+
+				</div>
+				<div class="form-group">
+					<label>Enter last name:<font color="red" size=5px>*</font></label>
+					<input type="text" class="form-control" placeholder="last name"
+						ng-model="lastname" name="lastname" required>
+				</div>
+				<div class="form-group">
+					<label>Enter Username:<font color="red" size=5px>*</font></label> <input
+						type="text" class="form-control" placeholder="Username"
+						ng-model="username" name="username" required>
+				</div>
+				<div class="form-group">
+					<label>Enter Password:<font color="red" size=5px>*</font></label> <input
+						type="password" class="form-control" id="pwd" ng-model="pwd"
+						placeholder="Password" name="password"
+						pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+						title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+						required>
+				</div>
+				<div class="form-group">
+					<label>Confirm Password:<font color="red" size=5px>*</font></label>
+					<input type="password" class="form-control" id="cpwd"
+						ng-model="cpwd" placeholder="Confirm Password"
+						name="confirm password" required>
+
+					<div ng-if="checkpass=='false'">
+						<label><font color="red">Your passwords did not
+								match!</font></label>
+
+					</div>
+				</div>
+				<div class="form-group">
+					<label>Enter email:<font color="red" size=5px>*</font></label> <input
+						type="text" class="form-control" placeholder="email"
+						ng-model="email" name="email"
+						pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+				</div>
+				<div class="form-group">
+					<label>Enter Phone No:<font color="red" size=5px>*</font></label> <input
+						type="tel" class="form-control" placeholder="Phone no."
+						ng-model="mobile" name="mobile" maxlength=10 pattern="[0-9]{10}"
+						title="Must be 10 digits" required>
+				</div>
+
+				<button type="submit" class="btn btn-primary"
+					ng-click="registerUser(firstname, lastname, username, pwd, cpwd, email, mobile)">Register</button>
+				<button type="submit" class="btn btn-success"
+					ng-click="backToHome()">Back to Home</button>
+			</form>
+		</div>
+		<script>
+			function required() {
+				var empt1 = document.form1.firstname.value;
+				var empt2 = document.form1.lastname.value;
+				var empt3 = document.form1.username.value;
+				var empt4 = document.form1.password.value;
+				var empt5 = document.form1.email.value;
+				var empt6 = document.form1.mobile.value;
+				if (empt1 === "" && empt2 === "" && empt3 === ""
+						&& empt4 === "" && empt5 === "" && empt6 === "") {
+					alert("Please input a Value");
+					return false;
+				} else {
+					alert('Registration done successfully. Please login');
+					return true;
+				}
+			}
+		</script>
+
+
+		<!-- ------------------------------------LOGIN FORM------------------------------------------------ -->
+		<div class="jumbotron col-sm-offset-3 col-md-6"
+			ng-if="login_status=='false'"
+			style="background-color: white; font-stretch: ultra-expanded; padding: 1px, 48px">
+			<div ng-repeat="rdetail in regdetail">
+				<div ng-if="rdetail.status=='ok'" ng-init="backToHome()">
+					<div>{{rdetail.msg}}</div>
+
+				</div>
+			</div>
+
+			<!--Div for login -->
+			<div id="Login_div">
+
+				<div class="text-center">
+					<h3>
+						<font color="black"> <b>USER LOGIN </b></font>
+					</h3>
+				</div>
+
+				<!--Div for username  -->
+				<div class="form-group">
+					<label>Username</label> <input type="text" class="form-control"
+						id="uname" ng-model="uname" aria-describedby="unameHelp"
+						placeholder="Enter User Name"> <small id="unameHelp"
+						class="text-light bg-dark"> We'll never share your user
+						name with anyone else. </small>
+
+				</div>
+
+				<!--Div for Password -->
+				<div class="form-group">
+					<label>Password</label> <input type="password" class="form-control"
+						id="pwd" ng-model="pwd" placeholder="Password">
+				</div>
+
+
+				<label><input type="checkbox" name="Remember" checked>Remember
+					me</label>
+
+				<!-- forget password -->
+				<button type="submit" class="btn btn-link float-right"
+					ng-click="forget_password()">Forgot Password?</button>
+				<br>
+
+				<!-- login button -->
+				<div class="text-center">
+					<button type="submit" class="btn btn-success btn-block"
+						ng-click="loginUser(uname,pwd)">Login</button>
+
+				</div>
+
+				<div class="form-group">
+					<div class="text-left">
+						<label><br>Not registered yet? Click on Signup
+							button.</label>
+
+						<button type="submit" class="btn btn-primary btn-block"
+							ng-click="registration_page()">Sign up</button>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- ------------------------------------------------Contact Page---------------------------------------- -->
+
+
+
+		<div id="Contact_div" ng-if="contact_status=='true'">
+			<section class="breadcrumbs-section">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<h2>Contact Us</h2>
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="farmer-buddy.html">Home</a>
+								<li>
+								<li class="breadcrumb-item active">Contact Us</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<p>We are always here to help. If you have
+								requirements/queries about our services; fill up the contact
+								from below and we'll do our best to reply within 24 hours.
+								Alternatively simply pickup the phone and give us a call.</p>
+							<hr>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="form-section">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6">
+							<form action="">
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<input type="text" class="form-control"
+											placeholder="Full Name" ng-model="fullname">
+									</div>
+									<div class="form-group col-md-6">
+										<input type="email" class="form-control"
+											placeholder="Email Address" ng-model="email">
+									</div>
+								</div>
+
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<input type="number" class="form-control"
+											placeholder="Mobile Number" ng-model="mobile">
+									</div>
+									<div class="form-group col-md-6">
+										<select class="form-control" name="" id="" ng-model="district">
+											<option selected>District</option>
+											<option value="Ahmednagar">Ahmednagar</option>
+											<option value="Akola">Akola</option>
+											<option value="Amravati">Amravati</option>
+											<option value="Aurangabad">Aurangabad</option>
+											<option value="Bhandara">Bhandara</option>
+											<option value="Beed">Beed</option>
+											<option value="Buldhana">Buldhana</option>
+											<option value="Chandrapur">Chandrapur</option>
+											<option value="Dhule">Dhule</option>
+											<option value="Gadchiroli">Gadchiroli</option>
+											<option value="Gondia">Gondia</option>
+											<option value="Hingoli">Hingolir</option>
+											<option value="Jalgaon">Jalgaon</option>
+											<option value="Jalana">Jalana</option>
+											<option value="Kolhapur">Kolhapur</option>
+											<option value="Latur">Latur</option>
+											<option value="Mumbai">Mumbai</option>
+											<option value="Nanded">Nanded</option>
+											<option value="Nandurbar">Nandurbar</option>
+											<option value="Nasik">Nashik</option>
+											<option value="Osmanabad">Osmanabad</option>
+											<option value="Parbhani">Parbhani</option>
+											<option value="Pune">Pune</option>
+											<option value="Raigarh">Raigarh</option>
+											<option value="Ratnagiri">Ratnagiri</option>
+											<option value="Sangali">Sangali</option>
+											<option value="Satara">Satarar</option>
+											<option value="Sindhudurg">Sindhudurg</option>
+											<option value="Solapur">Solapur</option>
+											<option value="Thane">Thane</option>
+											<option value="Wardha">Wardha</option>
+											<option value="Washim">Washim</option>
+											<option value="Yawatmal">Yawatmal</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="form-row">
+									<div class="form-group col-md-12">
+										<input type="text" class="form-control" placeholder="Subject"
+											ng-model="subject">
+									</div>
+								</div>
+
+								<div class="form-row">
+									<div class="form-group col-md-12">
+										<textarea class="form-control"
+											placeholder="Write your query here.." rows="3" cols=""
+											ng-model="description"></textarea>
+									</div>
+								</div>
+
+								<div class="form-row">
+									<div class="form-group col-md-12 text-center">
+										<button type="submit" class="btn btn-success"
+											ng-click="contactUs(fullname, email, mobile, district, subject, description)">
+											<i class="fa fa-paper-plane"></i>Send
+										</button>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-md-12 text-center">
+										<button type="submit" class="btn btn-success"
+											ng-click="backToHome()">
+											<i class="fa fa-chevron-left"></i>Back To Home
+										</button>
+									</div>
+								</div>
+
+							</form>
+						</div>
+
+						<div class="col-md-6 address">
+							<h5>
+								<b>Call Us/ WhatsApp</b>
+							</h5>
+							<p>
+								<a href="tel:+91 7798839371"><i class="fa fa-phone"></i>
+									+(91) 7798839371 </a><br>
+							</p>
+
+							<h5>
+								<b>Email</b>
+							</h5>
+							<p>
+								<a href="email:deshmukhgauri2015@gmail.com"><i
+									class="fa fa-envelope"></i>deshmukhgauri2015@gmail.com </a><br>
+							</p>
+
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<!-- ------------------------------------------------Contact Page close ---------------------------------------- -->
+
+		<!-- ------------------------------------------------About Page ------------------------------------------------ -->
+
+
+
+		<div id="About_div" ng-if="about_status=='true'">
+			<section class="breadcrumbs-section">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<h2>About Us</h2>
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="farmer-buddy.html">Home</a>
+								<li>
+								<li class="breadcrumb-item active">About Us</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section background-white">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6 margin-m-bottom">
+
+							<h2 class="text-thin">Our Vision</h2>
+							<font family="Times New Roman" size="4.5" color="black">To
+								transform farmers by creating an innovative as well as
+								interactive platform for the best farming results.</font>
+						</div>
+						<div class="col-md-6 margin-m-bottom">
+
+							<h2 class="text-thin">Our Mission</h2>
+							<font family="Times New Roman" size="4.5" color="black">To
+								provide an online platform for getting necessary help for
+								farming</font>
+						</div>
+					</div>
+				</div>
+			</section>
+			<br>.
+			<section class="section background-white">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 margin-m-bottom">
+							<h2 class="text-thin">Our Values</h2>
+
+							<font family="Times New Roman" size="4.5" color="black">Respect
+								and value for local knowledge and innovations<br> To
+								provide agriculture information to everyone which is easy to
+								understand<br> <font>To encourage the youths on
+									rural development</font>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section background-white">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 margin-m-bottom">
+							<br>
+							<h2>--------------------------------------------------What
+								we are----------------------------------------------</h2>
+							<br> <font family="Times New Roman" size="4.5" color="black">This
+								platform is specially developed to empower farmers the across
+								maharashtra. Here we help farmers all the way from seeding to
+								shipping their products in market. It includes seeds,
+								fertilizers, pesticides. We also provide guidance of checking
+								soil capacity and quality. This is the collaborative platform
+								which contains each necessary information needed for farming.</font><br>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<!-- ------------------------------------------------About Page close ---------------------------------------- -->
+		<!-- ------------------------------Forget password ---------------------------------------->
+		<div id="forget_pass_div" ng-if="forget_pass_status=='true'"
+			class="jumbotron col-sm-12" style="background-color: white;">
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="text-center">
+								<h3>
+									<i class="fa fa-lock fa-4x"></i>
+								</h3>
+								<h2 class="text-center">Forgot Password?</h2>
+								<p>
+									You can reset your password here.<br>Please enter your
+									details.
+								</p>
+								<div class="panel-body">
+
+									<form id="register-form" role="form" autocomplete="off"
+										class="form" method="post">
+
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-envelope color-blue"></i></span> <input
+													id="email" name="email" placeholder="email address"
+													class="form-control" type="email">
+											</div>
+
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-user color-blue"></i></span> <input
+													id="username" name="username" placeholder="Username"
+													class="form-control" type="email">
+											</div>
+										</div>
+										<div class="form-group">
+											<input name="recover-submit"
+												class="btn btn-lg btn-primary btn-block"
+												value="Reset Password" type="submit">
+										</div>
+
+										<input type="hidden" class="hide" name="token" id="token"
+											value="">
+									</form>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- ------------------------------Forget password close ---------------------------------------->
+
+		<!-- ------------------------------------------------Footer------------------------------------------------------>
+
+		<footer class="full-footer col-md-12">
+			<div class="container top-footer">
+				<hr>
+				<div class="background-primary padding text-center">
+					<a style="color: black;" class="p-1" href="#"> <i
+						class="fa fa-2x fa-facebook-square"></i></a> <a style="color: black;"
+						class="p-1" href="#"> <i
+						class="fa fa-2x fa-google-plus-square"></i></a> <a
+						style="color: black;" class="p-1" href="#"> <i
+						class="fa fa-2x fa-twitter-square"></i></a> <a style="color: black;"
+						class="p-1" href="#"> <i class="fa fa-2x fa-instagram"></i></a>
+					<hr>
+				</div>
+
+				<div class="col-md-6">
+					<font color="black" size="5">Related Links</font><br> <a
+						href="#"><font color="black" >About us </font></a><br> <a href="#"><font color="black" >Contact us</font></a><br>
+					<a href="#"><font color="black" >Feedback</font></a><br>
+				</div>
+				<div class="col-md-6">
+					<font color="black" size="5">Contact us</font><br> <a
+						style="color: black;" class="p-1" href="#"><i
+						class="fa fa-map-marker-alt">Address:Block No:2,Karvenagar,
+							Pune-52.</i></a><br> <a style="color: black;" class="p-1"
+						href="mailto:abc@gmail.com"><i class="fa fa-envelope">Email:
+							deshmukhgauri2015@gmail.com</i></a><br> <a style="color: black;"
+						class="p-1" href="mailto:abc@gmail.com"><i class="fa fa-phone">Phone:(+91
+							7798839371)</i></a><br> <a style="color: black;" class="p-1"
+						href="mailto:abc@gmail.com"><i class="fa fa-twitter">Twitter</i></a><br>
+					<a style="color: black;" class="p-1" href="mailto:abc@gmail.com"><i
+						class="fa fa-facebook">Facebook</i></a>
+				</div>
+			</div>
+			<div class="container-fluid bottom-footer">
+				<div class="row">
+					<div class="col-12 text-center">
+						<p style="color: white;">Copyrights @ 2020 - All rights
+							reserved</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- -------------------------------------Footer close------------------------------------------ -->
+
+
+	</div>
+</body>
+
+
+
+<script>
+	var app = angular.module('NSE-BSE-app', []);
+	app
+			.controller(
+					'NSE-BSE-ctrl',
+					function($scope, $http) {
+						$scope.login_status = "false";
+						$scope.registration_status = "false";
+						$scope.welcome_status = "false";
+						$scope.contact_status = "false";
+						$scope.forget_pass_status = "false";
+						$scope.checkpass = "true";
+						$scope.regdetail = "";
+						$scope.about_status = "false";
+						$scope.context_path = "http://localhost:2020";
+						$scope.crop_detail_status = "false";
+						
+						
+						$scope.loginUser = function(uname, pwd) {
+							console.log("changename function called");
+							$http.get(
+									$scope.context_path + "/user/login?uname="
+											+ uname + "&pwd=" + pwd).then(
+									function(response) {
+										$scope.userdetail = response.data;
+										console.log($scope.userdetail);
+										return angular
+												.fromJson($scope.userdetail);
+									});
+						}
+
+						$scope.registerUser = function(firstname, lastname,
+								username, pwd, cpwd, email, mobile) {
+							console.log("Firstname:" + firstname + "Lastname:"
+									+ lastname + "Username:" + username
+									+ "Password:" + pwd + "Email:" + email
+									+ "mobile:" + mobile);
+							if (pwd == cpwd) {
+								$scope.checkpass = 'true';
+								$http
+										.get(
+												$scope.context_path
+														+ "/user/create?firstname="
+														+ firstname
+														+ "&lastname="
+														+ lastname
+														+ "&username="
+														+ username + "&pwd="
+														+ pwd + "&email="
+														+ email + "&mobile="
+														+ mobile)
+										.then(
+												function(response) {
+													$scope.regdetail = response.data;
+													console
+															.log($scope.regdetail);
+													return angular
+															.fromJson($scope.regdetail);
+												});
+
+							} else {
+								$scope.checkpass = 'false';
+							}
+						}
+
+						$scope.contactUs = function(fullname, email, mobile,
+								district, subject, description) {
+							console.log("Fullname:" + fullname + "Email:"
+									+ email + "mobile:" + mobile + "district:"
+									+ district + "subject:" + subject
+									+ "Description:" + description);
+
+							$http
+									.get(
+											$scope.context_path
+													+ "/user/contact?fullname="
+													+ fullname + "&email="
+													+ email + "&mobile="
+													+ mobile + "&district="
+													+ district + "&subject="
+													+ subject + "&description="
+													+ description)
+									.then(
+											function(response) {
+												$scope.contactdetail = response.data;
+												console
+														.log($scope.contactdetail);
+												return angular
+														.fromJson($scope.contactdetail);
+											});
+						}
+
+						$scope.getDetails = function() {
+
+							$scope.companylist = ["TCS","IBM","GOOG","SI","NOK"];
+							$scope.dbdata = [];
+							console.log($scope.companylist);
+							for(var i=0; i<$scope.companylist.length; i++)
+							{
+							$http
+									.get(
+											"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol="+$scope.companylist[i]+"&apikey=SEG8V2YH0699G4QP")
+									.then(
+											function(response) {
+												
+												$scope.dbdata.push(response.data);
+												//$scope.dbdata= $scope.nsebesedetails["Time Series (Daily)"]["2020-07-31"];
+												//$scope.dbdata= $scope.nsebesedetails;
+												console.log($scope.dbdata);
+												//console.log($scope.crops);
+												//console.log($scope.crops["Time Series (Daily)"]);
+												//console.log($scope.crops["Time Series (Daily)"]["2020-07-31"]);
+												return angular.fromJson($scope.dbdata);
+											});
+							}
+							$scope.crop_detail_status = "true";
+						}
+
+						$scope.backToHome = function() {
+							$scope.login_status = "false";
+							$scope.registration_status = "false";
+							$scope.welcome_status = "false";
+							$scope.contact_status = "false";
+							$scope.forget_pass_status = "false";
+							$scope.about_status = "false";
+							$scope.crop_detail_status = "false";
+						}
+						$scope.registration_page = function() {
+							$scope.welcome_status = "false";
+							$scope.login_status = "true";
+							$scope.registration_status = "true";
+							$scope.contact_status = "false";
+							$scope.forget_pass_status = "false";
+							$scope.about_status = "false";
+							$scope.crop_detail_status = "false";
+
+						}
+						$scope.contact_page = function() {
+							$scope.welcome_status = "false";
+							$scope.login_status = "true";
+							$scope.registration_status = "false";
+							$scope.contact_status = "true";
+							$scope.forget_pass_status = "false";
+							$scope.about_status = "false";
+							$scope.crop_detail_status = "false";
+						}
+
+						$scope.welcome_page = function() {
+							$scope.welcome_status = "true";
+							$scope.login_status = "true";
+							$scope.registration_status = "false";
+							$scope.contact_status = "false";
+							$scope.forget_pass_status = "false";
+							$scope.about_status = "false";
+							$scope.crop_detail_status = "false";
+						}
+
+						$scope.about_page = function() {
+							$scope.welcome_status = "false";
+							$scope.login_status = "true";
+							$scope.registration_status = "false";
+							$scope.contact_status = "false";
+							$scope.forget_pass_status = "false";
+							$scope.about_status = "true";
+							$scope.crop_detail_status = "false";
+						}
+
+						$scope.forget_password = function() {
+							$scope.welcome_status = "false";
+							$scope.login_status = "true";
+							$scope.registration_status = "false";
+							$scope.contact_status = "false";
+							$scope.forget_pass_status = "true";
+							$scope.about_status = "false";
+							$scope.crop_detail_status = "false";
+
+						}
+
+					});
+</script>
+</html>
